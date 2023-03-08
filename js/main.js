@@ -51,23 +51,25 @@
   const close = document.querySelector('.close');
 
   // メニュー表示
-  btn.addEventListener('click', () => {
+  btn.addEventListener('click', ()=> {
     menu.style.display = 'flex';
-
+  
     setTimeout(() => {
       menu.classList.add('open');
     }, 10);
   });
-  
-  // メニュー非表示
-  close.addEventListener('click', () => {
-    menu.classList.remove('open');
 
-    setTimeout(() => {
-      menu.style.display = 'none'
-    }, 400);
+// メニュー非表示
+const menuLink = document.querySelectorAll('.sp-nav-link a');
+menuLink.forEach(elm => {
+    elm.addEventListener('click', ()=> {
+      menu.classList.remove('open');
+      
+      setTimeout(() => {
+        menu.style.display = 'none'
+      }, 400);
   });
-
+});
 
   // メニューのカルーセル
   const swiper = new Swiper('.swiper', {

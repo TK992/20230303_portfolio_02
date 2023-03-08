@@ -170,6 +170,9 @@ header a {
 }
 .fv-img {
   width: 100%;
+  height: 70vh;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .bgc {
@@ -404,6 +407,11 @@ footer p {
   }
   .fv-title {
     margin: 13% 0 2%;
+  }
+  .fv-img {
+    height: 80vh;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
   .store-explain {
     position: relative;

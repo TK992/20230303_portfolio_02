@@ -15,8 +15,9 @@ html {
 }
 
 body {
-  max-width: 550px;
   margin: 0 auto;
+  padding: 0;
+  max-width: 550px;
   box-sizing: border-box;
   text-align: center;
 }
@@ -31,7 +32,6 @@ h2 {
 
 
 #loader {
-  display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -65,12 +65,10 @@ h2 {
   display: none;
 }
 
-
-header {
-  max-width: 550px;
+header{
+  display: flex;
   position: fixed;
   top: 0;
-  display: flex;
   justify-content: space-between;
   align-items:center;
   width: 100%;
@@ -82,47 +80,89 @@ header {
   a {
     text-decoration: none;
   }
-
-  .shop-name {
-    font-family: 'Quicksand', sans-serif;
-    font-size: clamp(0.875rem, 2vw + 0.25rem, 1.5rem);;
-    font-weight: bold;
-    color: $cBlue;
-    margin-left: 15%;
-  }
-  
-  .sp-nav {
-    position: relative;
-    right: 5px;
-    width: 34px;
-    height: 34px;
-    border: solid 2px $cBlue;
-    border-radius: 50%;
-    
-    span {
-      display: inline-block;
-      position: absolute;
-      top: 10px;
-      right: 6px;
-      width: 23px;
-      height: 2px;
-      background-color: $cBlue;
-      
-      &:nth-of-type(2) {
-        top: 16px;
-      }
-      &:nth-of-type(3) {
-        top: 22px;
-      }
-    }
-  }
-
-  .pc-nav {
-    display: none;
-  }
-
 }
 
+.shop-name {
+  font-family: 'Quicksand', sans-serif;
+  font-size: clamp(0.875rem, 2vw + 0.25rem, 1.5rem);;
+  font-weight: bold;
+  color: $cBlue;
+  margin-left: 15%;
+}
+  
+.menu-button {
+  position: relative;
+  right: 5px;
+  width: 34px;
+  height: 34px;
+  border: solid 2px $cBlue;
+  border-radius: 50%;
+  cursor: pointer;
+
+  span {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    right: 6px;
+    width: 23px;
+    height: 2px;
+    background-color: $cBlue;
+    
+    &:nth-of-type(2) {
+      top: 16px;
+    }
+    &:nth-of-type(3) {
+      top: 22px;
+    }
+  }
+}
+
+.sp-nav-link {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  padding-top: 25%;
+  background-color: $cWhite;
+  width: 100vw;
+  height: 100vh;
+  transition: 0.4s;
+  opacity: 0;
+  transform: translateX(100vw);
+  z-index: 2;
+  
+  .close {
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    margin: 5% 3% 10%;
+    width: fit-content;
+    color: $cBlue;
+    font-size: clamp(0.875rem, 2vw + 0.5rem, 1.125rem);
+  }
+
+  a {
+    text-align: left;
+    margin: 6% 0 6% 15%;
+    text-decoration: underline;
+    color: $cBlue;
+    font-size: clamp(1.125rem, 1.9vw + 0.75rem, 1.375rem);
+  }
+
+  img {
+    width: 10%;
+  }
+
+  div {
+    margin: 10% 0 0 15%;
+    border-bottom: 2px solid $cBlue;
+  }
+  
+}
+
+.pc-nav-link {
+  display: none;
+}
 
 #link-top {
   position: relative;
@@ -181,10 +221,12 @@ header {
 
 
 .menu {
+  position: relative;
 
   .swiper {
     position: relative;
     width: 90%;
+    padding-bottom: 10%;
     
     img {
       width: 85%;
@@ -201,16 +243,33 @@ header {
       top: 25%;
       color: $cWhite;
     }
-    
-    &swiper-pagination-bullet-active {
-    background: $cWhite;
+  
+    p {
+      padding-bottom: 20%;
+      font-size: clamp(0.75rem, 1.3vw + 0.5rem, 1.25rem);
+    }
+  }
+
+  .menu-table {
+    position: absolute;
+    bottom: 3%;
+    right: 3%;
+    cursor: pointer;
+
+    p {
+      margin: 0 0 1%;
+      font-size: clamp(0.625rem, 0.8vw + 0.5rem, 0.875rem);
+    }
   }
   
-  p {
-    padding-bottom: 10%;
-    font-size: clamp(0.75rem, 1.3vw + 0.5rem, 1.25rem);
+  .arrow {
+    display: block;
+    width: 65px;
+    height: 4px;
+    border-bottom: 1px solid $cWhite;
+    border-right: 1px solid $cWhite;
+    transform: skew(45deg);
   }
-}
 }
 
 
@@ -345,10 +404,15 @@ footer {
 }
 
 .show {
-  // transition: 0.4s;
   transform: none;
   opacity: 1;
   visibility: visible;
+}
+
+.open {
+  position: fixed;
+  opacity: 1;
+  transform: none; 
 }
 
 // ----------- デスクトップ用デザイン -----------
@@ -362,27 +426,30 @@ footer {
     padding: 20% 0 10%;
   }
   
-
+  
   header {
     max-width: 800px;
     
     a:hover {
-      opacity: 0.7;
+      opacity: 0.8;
       text-decoration: underline;
     }
-
-    .sp-nav {
-      display: none;
-    }
-    
-    .pc-nav {
+        
+    .pc-nav-link {
       display: flex;
-      justify-content: space-evenly;
-      width: 60%;
+      justify-content: right;
+      align-items: center;
+      width: 100%;
+      
+      img {
+        width: 20px;
+        vertical-align: bottom;
+      }
       
       a {
         text-decoration: none;
         color: $cBlue;
+        margin: 0 3%;
         
         &:hover {
           opacity: 0.7;
@@ -390,13 +457,16 @@ footer {
         }
       }
     }
-
+    
     .shop-name:hover {
-        opacity: 0.7;
+      opacity: 0.7;
     }
   }
   
-  
+  .menu-button,.sp-nav-link {
+    display: none;
+  }
+
   .fv-title {
     margin: 13% 0 2%;
   }
@@ -434,6 +504,10 @@ footer {
     p {
       padding-bottom: 15%;
       }
+    }
+
+    .arrow {
+      width: 75px;
     }
   }
   

@@ -45,6 +45,30 @@
 
 
 
+  // ナビゲーションのボタンをクリックしたらメニューを表示・非表示する
+  const btn = document.querySelector('.menu-button');
+  const menu = document.querySelector('.sp-nav-link');
+  const close = document.querySelector('.close');
+
+  // メニュー表示
+  btn.addEventListener('click', () => {
+    menu.style.display = 'flex';
+
+    setTimeout(() => {
+      menu.classList.add('open');
+    }, 10);
+  });
+  
+  // メニュー非表示
+  close.addEventListener('click', () => {
+    menu.classList.remove('open');
+
+    setTimeout(() => {
+      menu.style.display = 'none'
+    }, 400);
+  });
+
+
   // メニューのカルーセル
   const swiper = new Swiper('.swiper', {
     effect: 'fade',
@@ -64,7 +88,7 @@
 
 
 
-  // storeセクションの文言変更
+  // PC閲覧時にstoreセクションの文言変更
   const text = document.querySelector('.store-explain');
   
   if(window.matchMedia("(min-width:551px)").matches) {

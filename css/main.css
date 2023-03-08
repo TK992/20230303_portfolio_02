@@ -6,8 +6,9 @@ html {
 }
 
 body {
-  max-width: 550px;
   margin: 0 auto;
+  padding: 0;
+  max-width: 550px;
   box-sizing: border-box;
   text-align: center;
 }
@@ -20,7 +21,6 @@ h2 {
 }
 
 #loader {
-  display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -62,10 +62,9 @@ h2 {
 }
 
 header {
-  max-width: 550px;
+  display: flex;
   position: fixed;
   top: 0;
-  display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -77,22 +76,25 @@ header {
 header a {
   text-decoration: none;
 }
-header .shop-name {
+
+.shop-name {
   font-family: "Quicksand", sans-serif;
   font-size: clamp(0.875rem, 2vw + 0.25rem, 1.5rem);
   font-weight: bold;
   color: #22445B;
   margin-left: 15%;
 }
-header .sp-nav {
+
+.menu-button {
   position: relative;
   right: 5px;
   width: 34px;
   height: 34px;
   border: solid 2px #22445B;
   border-radius: 50%;
+  cursor: pointer;
 }
-header .sp-nav span {
+.menu-button span {
   display: inline-block;
   position: absolute;
   top: 10px;
@@ -101,13 +103,54 @@ header .sp-nav span {
   height: 2px;
   background-color: #22445B;
 }
-header .sp-nav span:nth-of-type(2) {
+.menu-button span:nth-of-type(2) {
   top: 16px;
 }
-header .sp-nav span:nth-of-type(3) {
+.menu-button span:nth-of-type(3) {
   top: 22px;
 }
-header .pc-nav {
+
+.sp-nav-link {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  padding-top: 25%;
+  background-color: #ffffff;
+  width: 100vw;
+  height: 100vh;
+  transition: 0.4s;
+  opacity: 0;
+  transform: translateX(100vw);
+  z-index: 2;
+}
+.sp-nav-link .close {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  margin: 5% 3% 10%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  color: #22445B;
+  font-size: clamp(0.875rem, 2vw + 0.5rem, 1.125rem);
+}
+.sp-nav-link a {
+  text-align: left;
+  margin: 6% 0 6% 15%;
+  text-decoration: underline;
+  color: #22445B;
+  font-size: clamp(1.125rem, 1.9vw + 0.75rem, 1.375rem);
+}
+.sp-nav-link img {
+  width: 10%;
+}
+.sp-nav-link div {
+  margin: 10% 0 0 15%;
+  border-bottom: 2px solid #22445B;
+}
+
+.pc-nav-link {
   display: none;
 }
 
@@ -158,9 +201,13 @@ header .pc-nav {
   width: 41%;
 }
 
+.menu {
+  position: relative;
+}
 .menu .swiper {
   position: relative;
   width: 90%;
+  padding-bottom: 10%;
 }
 .menu .swiper img {
   width: 85%;
@@ -177,12 +224,27 @@ header .pc-nav {
   top: 25%;
   color: #ffffff;
 }
-.menu .swiperswiper-pagination-bullet-active {
-  background: #ffffff;
-}
 .menu .swiper p {
-  padding-bottom: 10%;
+  padding-bottom: 20%;
   font-size: clamp(0.75rem, 1.3vw + 0.5rem, 1.25rem);
+}
+.menu .menu-table {
+  position: absolute;
+  bottom: 3%;
+  right: 3%;
+  cursor: pointer;
+}
+.menu .menu-table p {
+  margin: 0 0 1%;
+  font-size: clamp(0.625rem, 0.8vw + 0.5rem, 0.875rem);
+}
+.menu .arrow {
+  display: block;
+  width: 65px;
+  height: 4px;
+  border-bottom: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  transform: skew(45deg);
 }
 
 .info {
@@ -295,6 +357,12 @@ footer p {
   visibility: visible;
 }
 
+.open {
+  position: fixed;
+  opacity: 1;
+  transform: none;
+}
+
 @media screen and (min-width: 551px) {
   body {
     max-width: 800px;
@@ -306,27 +374,33 @@ footer p {
     max-width: 800px;
   }
   header a:hover {
-    opacity: 0.7;
+    opacity: 0.8;
     text-decoration: underline;
   }
-  header .sp-nav {
-    display: none;
-  }
-  header .pc-nav {
+  header .pc-nav-link {
     display: flex;
-    justify-content: space-evenly;
-    width: 60%;
+    justify-content: right;
+    align-items: center;
+    width: 100%;
   }
-  header .pc-nav a {
+  header .pc-nav-link img {
+    width: 20px;
+    vertical-align: bottom;
+  }
+  header .pc-nav-link a {
     text-decoration: none;
     color: #22445B;
+    margin: 0 3%;
   }
-  header .pc-nav a:hover {
+  header .pc-nav-link a:hover {
     opacity: 0.7;
     text-decoration: underline;
   }
   header .shop-name:hover {
     opacity: 0.7;
+  }
+  .menu-button, .sp-nav-link {
+    display: none;
   }
   .fv-title {
     margin: 13% 0 2%;
@@ -353,6 +427,9 @@ footer p {
   }
   .menu .swiper p {
     padding-bottom: 15%;
+  }
+  .menu .arrow {
+    width: 75px;
   }
   .info img {
     margin-left: 10%;

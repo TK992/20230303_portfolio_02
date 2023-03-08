@@ -168,11 +168,14 @@ header a {
   padding: 0;
   font-size: clamp(0.875rem, 2vw + 0.5rem, 1.5rem);
 }
-.fv-img {
+.fv-img-sp {
   width: 100%;
-  height: 70vh;
+  height: 80vh;
   -o-object-fit: cover;
      object-fit: cover;
+}
+.fv-img-pc {
+  display: none;
 }
 
 .bgc {
@@ -408,7 +411,12 @@ footer p {
   .fv-title {
     margin: 13% 0 2%;
   }
-  .fv-img {
+  .fv-img-sp {
+    display: none;
+  }
+  .fv-img-pc {
+    display: block;
+    width: 100%;
     height: 80vh;
     -o-object-fit: cover;
        object-fit: cover;

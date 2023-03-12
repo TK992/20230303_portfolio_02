@@ -120,7 +120,7 @@ header{
 .sp-nav-link {
   display: none;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   top: 0;
   padding-top: 25%;
   background-color: $cWhite;
